@@ -115,6 +115,8 @@
 
         player0 = player;
         window.player0= player;
+        window.rough= 'Spotify Player';
+        window.control = player;
 
         player.addListener("ready", ({ device_id }) => {
           console.log("Ready with Device ID", device_id);
