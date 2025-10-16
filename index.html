@@ -121,20 +121,20 @@
         window.control = player;
 
         player.addListener("ready", ({ device_id }) => {
-          console.log("Ready with Device ID", device_id);
+          console.log("🎵 [Spotify SDK] Device ready with ID:", device_id);
           handleChangeDevice(device_id);
 
           // Send message to React Native WebView
           if (window.ReactNativeWebView) {
-            window.ReactNativeWebView.postMessage(
-              JSON.stringify({
-                type: "player_ready",
-                device_id: device_id,
-              })
-            );
-            console.log("Sent player_ready message to React Native");
+            const message = JSON.stringify({
+              type: "player_ready",
+              device_id: device_id,
+            });
+            console.log("📤 [Sending to React Native]:", message);
+            window.ReactNativeWebView.postMessage(message);
+            console.log("✅ [Message sent successfully]");
           } else {
-            console.log("Not running in React Native WebView");
+            console.log("⚠️ [Not running in React Native WebView]");
           }
 
           //redirect();
